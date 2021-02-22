@@ -1,0 +1,36 @@
+{
+  "name": "meth",
+  "version": "1.0.0",
+  "description": "Mesh:",
+  "main": "ui/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rinzlxr/meth.git"
+  },
+  "author": "rinzlxr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rinzlxr/meth/issues"
+  },
+  "homepage": "https://github.com/rinzlxr/meth#readme",
+  "dependencies": {
+    "@ceramicnetwork/http-client": "^0.9.6",
+    "object-assign": "^4.1.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "regl": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-react": "^7.12.13",
+    "coffee-loader": "^2.0.0",
+    "coffeescript": "^2.5.1",
+    "near-api-js": "^0.36.3",
+    "webpack": "^5.23.0",
+    "webpack-cli": "^4.5.0"
+  }
+}
