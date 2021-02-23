@@ -20,10 +20,17 @@ class HomePage extends React.Component
     }
 
   componentDidMount: ->
-    console.log 'component did mount'
+    console.log 'load ceramic'
     ceramic = new CeramicClient API_URL
     console.log ceramic
 
+  loadContract: ->
+    console.log 'load contract'
+    #contract = new Contract(Account, contractName, contractMethods) 
+    #contract.get_balance(null, 300000000000000, near.utils.format.parseNearAmount('12')),
+
+  loadWallet: ->
+    console.log 'load wallet'
     contractName = "YOUR DEV ACCOUNT ID"
     config =
       networkId: 'default'
@@ -32,6 +39,9 @@ class HomePage extends React.Component
       helperUrl: 'https://helper.testnet.near.org'
       contractName: "YOUR DEV ACCOUNT ID"
 
+    contractMethods =
+      viewMethods: ['get_balance'],
+      changeMethods: ['transfer']
 
     { networkId, nodeUrl, walletUrl } = config
     near = new Near({
@@ -40,25 +50,22 @@ class HomePage extends React.Component
         keyStore: new BrowserLocalStorageKeyStore()
     })
 
-
-
-    wallet = new WalletAccount(near)
-    #account = if wallet.isSignedIn() then wallet.account() else wallet.requestSignIn(contractName)
-
-   
-    contractMethods =
-      viewMethods: ['get_balance'],
-      changeMethods: ['transfer']
-
-    #contract = new Contract(Account, contractName, contractMethods) 
-    #contract.get_balance(null, 300000000000000, near.utils.format.parseNearAmount('12')),
+    wallet = new WalletAccount(near)   
+    account = if wallet.isSignedIn() \
+              then wallet.account() \
+              else wallet.requestSignIn(contractName)
 
   render: ->
-    R 'div', className: 'home', 
-      R 'h3', null, "Welcome to the store, #{@props.name}"
-      R 'a', href:'foo', 'bar'
-    
+    R 'div', 
+      className: 'home', 
+      R 'h3',
+        null, 
+        "W3lcome to the store, #{@props.name}"
+      R 'div', 
+        {className: 'button', onClick: @loadWallet},
+        'Connect Wallet'
+ 
 ReactDOM.render(
-  R(HomePage, {name: "Poppa"}, "Lorem ipsum"),
-  document.getElementById("root")
+  R HomePage, name: "Poppa", "Lorem ipsum"
+  document.getElementById "root"
 )
