@@ -40,7 +40,7 @@ class HomePage extends React.Component
       contractName: "YOUR DEV ACCOUNT ID"
 
     contractMethods =
-      viewMethods: ['get_balance'],
+      viewMethods: ['get_balance']
       changeMethods: ['transfer']
 
     { networkId, nodeUrl, walletUrl } = config
@@ -56,14 +56,10 @@ class HomePage extends React.Component
               else wallet.requestSignIn(contractName)
 
   render: ->
-    R 'div', 
-      className: 'home', 
-      R 'h3',
-        null, 
-        "W3lcome to the store, #{@props.name}"
-      R 'div', 
-        {className: 'button', onClick: @loadWallet},
-        'Connect Wallet'
+    R 'div', className: 'home', 
+      R 'h3', null, "W3lcome to the store, #{@props.name}"
+      R 'div', {className: 'button', onClick: @loadWallet}, 'Connect Wallet'
+        
  
 ReactDOM.render(
   R HomePage, name: "Poppa", "Lorem ipsum"
