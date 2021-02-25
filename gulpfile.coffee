@@ -13,7 +13,7 @@ server      = require('browser-sync').create()
 sass.compiler = require 'node-sass'
 
 customOpts =
-  entries: ['./ui/app.coffee']
+  entries: ['./ui/index.coffee']
   debug: true
   transform: [reactify, coffeeify]
 
@@ -42,7 +42,7 @@ gulp.task 'js', ->
     .pipe gulp.dest './dist'
 
 watch = (done) ->
-  gulp.watch('./ui/app.coffee', gulp.series 'css', 'js', reload)
+  gulp.watch('./ui/index.coffee', gulp.series 'css', 'js', reload)
   done()
 
 gulp.task 'default', gulp.series 'css', 'js', serve, watch, ->

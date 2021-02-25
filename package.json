@@ -4,7 +4,13 @@
   "description": "Mesh:",
   "main": "ui/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:tx && npm run build:ui",
+    "build:tx": "env 'RUSTFLAGS=-C link-args=-s' cargo build --target wasm32-unknown-unknown --release --manifest-path ./tx/Cargo.toml",
+    "build:ui": "npx gulp",
+    "build:css": "npx gulp css",
+    "build:js": "npx gulp js",
+    "test:tx": "cargo test --manifest-path ./tx/Cargo.toml"
   },
   "repository": {
     "type": "git",
@@ -21,6 +27,7 @@
     "near-api-js": "^0.36.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "redux": "^4.0.5",
     "regl": "^2.0.1"
   },
   "devDependencies": {
@@ -37,6 +44,7 @@
     "gulp-uglify": "^3.0.2",
     "gulplog": "^1.0.0",
     "node-sass": "^5.0.0",
+    "react-router": "^5.2.0",
     "reactify": "^1.1.1",
     "sass": "^1.32.8",
     "uglify": "^0.1.5",

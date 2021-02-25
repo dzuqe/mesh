@@ -12,6 +12,12 @@ pub struct CounterContract {
 
 #[near_bindgen]
 impl CounterContract {
+    #[init]
+    pub fn new(&mut self) -> Self {
+        self.val = 0;
+        self
+    }
+
     pub fn get_num(&self) -> i8 {
         return self.val;
     }
