@@ -1,5 +1,4 @@
 React = require 'react'
-{h1,div,h3} = require 'react-dom'
 R = React.createElement
 env = require '../env/default.coffee'
 { withRouter } = require 'react-router-dom'
@@ -12,6 +11,8 @@ CeramicClient = require('@ceramicnetwork/http-client').default
   Near, Account, Contract, KeyPair, WalletAccount,
   keyStores: { BrowserLocalStorageKeyStore }
 } = require 'near-api-js'
+
+Regl = require './regl.coffee'
 
 class App extends React.Component
   @propTypes =
@@ -65,19 +66,20 @@ class App extends React.Component
     console.log "Done retrieving wallet info"
     console.log account
 
-    if typeof @ isnt undefined
-      @setState({
-        account: account
-      })
+    @setState({
+      account: account
+    })
 
-      @props.saveNearAccount(account)
-    else
-      console.log 'this object is not in context'
+    @props.saveNearAccount(account)
 
   render: ->
-    R 'div', className: 'home', 
-      R 'h3', null, "W3lcome to the store, #{@props.name}"
-      R 'div', {className: 'button', onClick: @loadWallet}, 'Connect Wallet'
+    R 'div', className: 'home',
+      R 'header', null,
+        R 'h3', null, "meth"
+        R 'div', {className: 'button', onClick: @loadWallet}, 'Connect Wallet'
+      R 'div', {className: 'container'},
+        R 'h1', null, 'regl test'
+        R Regl, null, null
 
 mapStateToProps = (state) ->
   account: state.account

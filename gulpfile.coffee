@@ -28,12 +28,12 @@ serve = (done) ->
       baseDir: './dist'
   done()
 
-gulp.task 'css', ->
+gulp.task 'sass', ->
   gulp.src './ui/main.sass'
     .pipe sass.sync().on 'error', sass.logError
     .pipe gulp.dest './dist/'
 
-gulp.task 'js', ->
+gulp.task 'coffee', ->
   b = browserify(customOpts)
   return b.bundle()
     .on('error', log.error.bind(log, 'Browserify error!'))
@@ -42,8 +42,15 @@ gulp.task 'js', ->
     .pipe gulp.dest './dist'
 
 watch = (done) ->
-  gulp.watch('./ui/index.coffee', gulp.series 'css', 'js', reload)
+  gulp.watch(
+    [
+      'ui/*.coffee', 
+      'ui/components/*.coffee', 
+      'ui/containers/*.coffee'
+    ], 
+    gulp.series 'sass', 'coffee', reload
+  )
   done()
 
-gulp.task 'default', gulp.series 'css', 'js', serve, watch, ->
+gulp.task 'default', gulp.series 'sass', 'coffee', serve, watch, ->
   console.log ''

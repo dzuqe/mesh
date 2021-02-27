@@ -6,20 +6,20 @@ R = React.createElement
 App = require './app.coffee'
 Faq = require './faq.coffee'
 
-console.log "FAQ", Faq
-
 Root = ({store}) ->
   R Provider, {store:store},
     R 'div', null,
       R 'nav', null,
         R 'ul', null,
           R 'li', null,
-            R Link, {to:'/'}, 'Home'
+            R Link, {to: '/'}, 'Home'
           R 'li', null,
-            R Link, {to:'/faq'}, 'FAQ page'
+            R Link, {to: '/faq'}, 'FAQ page'
       R Switch, null,
-        R Route, {exact:true,path:'/'}, R(App,null,null)
-        R Route, {path:'/faq'}, R(Faq,null,null)
+        R Route, {exact: true, path: '/'},
+          R App, null, null
+        R Route, {path: '/faq'},
+          R Faq, null, null
 
 Root.propTypes =
   store: PropTypes.object.isRequired

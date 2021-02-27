@@ -26,6 +26,6 @@ class ErrorBoundary extends React.Component
    
 render(
   R BrowserRouter, null,
-    R Root, {store:store}, null
-  document.getElementById "root"
+    R Root, {store: store}, null
+  document.getElementById 'root'
 )
