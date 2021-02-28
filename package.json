@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/rinzlxr/meth#readme",
   "dependencies": {
+    "@ceramicnetwork/3id-did-resolver": "^0.6.10",
     "@ceramicnetwork/http-client": "^0.9.6",
+    "babylonjs": "^4.2.0",
     "lodash": "^4.17.21",
     "near-api-js": "^0.36.3",
     "prop-types": "^15.7.2",
@@ -31,7 +33,7 @@
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
-    "regl": "^2.0.1"
+    "three": "^0.126.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.17",

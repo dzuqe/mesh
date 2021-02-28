@@ -18,6 +18,8 @@ class App extends React.Component
   @propTypes =
     account: PropTypes.object
 
+  ceramic = null
+
   constructor: (props) ->
     super props
     @state =
