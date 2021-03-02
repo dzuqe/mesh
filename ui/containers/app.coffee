@@ -12,7 +12,7 @@ CeramicClient = require('@ceramicnetwork/http-client').default
   keyStores: { BrowserLocalStorageKeyStore }
 } = require 'near-api-js'
 
-Regl = require './regl.coffee'
+Viewport = require './viewport.coffee'
 
 class App extends React.Component
   @propTypes =
@@ -81,7 +81,7 @@ class App extends React.Component
         R 'div', {className: 'button', onClick: @loadWallet}, 'Connect Wallet'
       R 'div', {className: 'container'},
         R 'h1', null, 'regl test'
-        R Regl, null, null
+        R Viewport, null, null
 
 mapStateToProps = (state) ->
   account: state.account

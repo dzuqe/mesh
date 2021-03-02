@@ -1,10 +1,11 @@
 React = require 'react'
 R = React.createElement
 Babylon = require 'babylonjs'
+require 'babylonjs-loaders'
 
 env = require '../env/default.coffee'
 
-class Regl extends React.Component
+class Viewport extends React.Component
   canvas = null
 
   constructor: (props) ->
@@ -22,7 +23,7 @@ class Regl extends React.Component
     scene = new Babylon.Scene engine
 
     camera = new Babylon.FreeCamera 'cam1',
-      new Babylon.Vector3 0, 5, -10 
+      new Babylon.Vector3 0, 5, -3 
       scene
 
     camera.setTarget Babylon.Vector3.Zero()
@@ -32,25 +33,33 @@ class Regl extends React.Component
       new Babylon.Vector3 0, 1, 0   # position
       scene
 
-    sphere = Babylon.Mesh.CreateSphere 'sphere1', # name
-      16                      # segment
-      2                       # diameter
-      scene
-      false                   # updatable
-      Babylon.Mesh.FRONTSIDE  # side orientation
+#    sphere = Babylon.Mesh.CreateSphere 'sphere1', # name
+#      16                      # segment
+#      2                       # diameter
+#      scene
+#      false                   # updatable
+#      Babylon.Mesh.FRONTSIDE  # side orientation
+#
+#    sphere.position.y = 1
+#
+#    ground = Babylon.Mesh.CreateGround 'ground1', # name
+#      6                       # width 
+#      6                       # height
+#      2                       # subdivision 
+#      scene
+#      false                   # updatable
 
-    sphere.position.y = 1
-
-    ground = Babylon.Mesh.CreateGround 'ground1', # name
-      6                       # width 
-      6                       # height
-      2                       # subdivision 
-      scene
-      false                   # updatable
+    Babylon.SceneLoader.Append './bodhi/',
+      'scene.gltf', 
+      scene, 
+      (scene) -> console.log 'do something with scene: ', scene
 
     return scene
 
   componentDidMount: ->
+    @createBabylonScene()
+
+  createBabylonScene: ->
     engine = new Babylon.Engine(@canvas.current, true, {
       preserveDrawingBuffer: true,
       stencil: true
@@ -60,7 +69,7 @@ class Regl extends React.Component
     engine.runRenderLoop(() ->
       scene.render()
     )
-
+ 
   render: ->
     R 'div', null, null,
       R 'input', {
@@ -69,6 +78,6 @@ class Regl extends React.Component
         type: 'file'
         multiple: true
       }, null
-      R 'canvas', {ref: @canvas}, null
+      R 'canvas', {ref: @canvas, width: 640, height: 480}, null
 
-module.exports = Regl
+module.exports = Viewport

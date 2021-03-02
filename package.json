@@ -8,8 +8,8 @@
     "build": "npm run build:tx && npm run build:ui",
     "build:tx": "env 'RUSTFLAGS=-C link-args=-s' cargo build --target wasm32-unknown-unknown --release --manifest-path ./tx/Cargo.toml",
     "build:ui": "npx gulp",
-    "build:css": "npx gulp css",
-    "build:js": "npx gulp js",
+    "build:css": "npx gulp sass",
+    "build:js": "npx gulp coffee",
     "test:tx": "cargo test --manifest-path ./tx/Cargo.toml"
   },
   "repository": {
@@ -26,14 +26,14 @@
     "@ceramicnetwork/3id-did-resolver": "^0.6.10",
     "@ceramicnetwork/http-client": "^0.9.6",
     "babylonjs": "^4.2.0",
+    "babylonjs-loaders": "^4.2.0",
     "lodash": "^4.17.21",
     "near-api-js": "^0.36.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
-    "redux": "^4.0.5",
-    "three": "^0.126.0"
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.17",
