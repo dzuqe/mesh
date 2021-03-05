@@ -11,19 +11,12 @@ class Viewport extends React.Component
   constructor: (props) ->
     super props
     @canvas = React.createRef()
-    @getFiles = @getFiles.bind @
-
-  componentWillUnmount: ->
-
-  getFiles: (e) ->
-    e.preventDefault()
-    console.log 'get files', e.target.files
 
   createScene: (engine) ->
     scene = new Babylon.Scene engine
 
     camera = new Babylon.FreeCamera 'cam1',
-      new Babylon.Vector3 0, 5, -3 
+      new Babylon.Vector3 0, 5, -300 
       scene
 
     camera.setTarget Babylon.Vector3.Zero()
@@ -49,9 +42,9 @@ class Viewport extends React.Component
 #      scene
 #      false                   # updatable
 
-    Babylon.SceneLoader.Append './bodhi/',
-      'scene.gltf', 
-      scene, 
+    Babylon.SceneLoader.Append './',
+      'princess_of_egypt.stl',
+      scene,
       (scene) -> console.log 'do something with scene: ', scene
 
     return scene
@@ -71,13 +64,7 @@ class Viewport extends React.Component
     )
  
   render: ->
-    R 'div', null, null,
-      R 'input', {
-        onChange: @getFiles
-        id: 'files'
-        type: 'file'
-        multiple: true
-      }, null
+    R 'div', null,
       R 'canvas', {ref: @canvas, width: 640, height: 480}, null
 
 module.exports = Viewport
