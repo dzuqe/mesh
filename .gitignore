@@ -1,5 +1,6 @@
 node_modules
 *.swp
 package-lock.json
-dist
+dist/bundle.js
+dist/main.css
 tx/target
