@@ -11,6 +11,7 @@ customizable schema
 Aims to be a minimal and lightweight 3D dapp template for creative coders
 who don't mind that the lexer is a little wonky. 
 
+- [babylonjs](https://www.babylonjs.com/) webgl framework
 - [coffescript](https://coffeescript.org/) without jsx
 - [gulp](https://gulpjs.com/) and [browserify](https://browserify.org/) module bundler 
 - [react](reactjs.org/) application framework
